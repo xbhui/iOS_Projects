@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>Sam</string>
+		<key>text</key>
+		<string>Sam is a very talent student, good at math, english, also really like music</string>
+		<key>name</key>
+		<string>Sam</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>Xiaoen</string>
+		<key>text</key>
+		<string>He&apos;s good at languges, such as englith, fance</string>
+		<key>name</key>
+		<string>Xiaoen</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>Kuke</string>
+		<key>text</key>
+		<string>talent at drawing, always have ideas for the new project</string>
+		<key>name</key>
+		<string>Kuke</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>LiMei</string>
+		<key>text</key>
+		<string>Always ready for helping every friends, good at desginning</string>
+		<key>name</key>
+		<string>LiMei</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>Tom</string>
+		<key>text</key>
+		<string>a talent computer scientist, no mater with creative intellegence or the optimizition, always have good ideas</string>
+		<key>name</key>
+		<string>Tom</string>
+	</dict>
+</array>
+</plist>
