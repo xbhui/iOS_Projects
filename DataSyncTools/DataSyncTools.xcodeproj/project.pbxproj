@@ -173,7 +173,7 @@
 				7E8DD92B21E7C7DC00108B30 /* Controllers */,
 				7E8DD92821E7C1D600108B30 /* Views */,
 				7E8DD92021E6D15F00108B30 /* CKManager */,
-				7E8DD91F21E6CF2000108B30 /* Objects */,
+				7E8DD91F21E6CF2000108B30 /* Models */,
 				7E8DD91C21E6C7CB00108B30 /* DataStorage */,
 			);
 			path = Cloudkit;
@@ -249,12 +249,12 @@
 			path = DataStorage;
 			sourceTree = "<group>";
 		};
-		7E8DD91F21E6CF2000108B30 /* Objects */ = {
+		7E8DD91F21E6CF2000108B30 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				7E8DD92621E7BC6A00108B30 /* Student.swift */,
 			);
-			path = Objects;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		7E8DD92021E6D15F00108B30 /* CKManager */ = {
@@ -574,6 +574,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
