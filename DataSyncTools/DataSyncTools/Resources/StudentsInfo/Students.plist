@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>avggrade</key>
+		<string>89</string>
 		<key>image</key>
 		<string>Sam</string>
 		<key>text</key>
@@ -11,6 +13,8 @@
 		<string>Sam</string>
 	</dict>
 	<dict>
+		<key>avggrade</key>
+		<string>99</string>
 		<key>image</key>
 		<string>Xiaoen</string>
 		<key>text</key>
@@ -19,6 +23,8 @@
 		<string>Xiaoen</string>
 	</dict>
 	<dict>
+		<key>avggrade</key>
+		<string>100</string>
 		<key>image</key>
 		<string>Kuke</string>
 		<key>text</key>
@@ -27,6 +33,8 @@
 		<string>Kuke</string>
 	</dict>
 	<dict>
+		<key>avggrade</key>
+		<string>95</string>
 		<key>image</key>
 		<string>LiMei</string>
 		<key>text</key>
@@ -35,6 +43,8 @@
 		<string>LiMei</string>
 	</dict>
 	<dict>
+		<key>avggrade</key>
+		<string>96</string>
 		<key>image</key>
 		<string>Tom</string>
 		<key>text</key>

@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import UserNotifications
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window?.rootViewController = initTabViewController();
+        self.addNotification()
         return true
     }
 
@@ -43,7 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("didReceiveRemoteNotification")
+        if application.applicationState == UIApplication.State.active {
+            // front
+            NotificationCenter.default.post(name: NSNotification.Name.init("CloudkitInfoUpdateNotification"), object: nil)
+        }else{
+            UIApplication.init().applicationIconBadgeNumber = 0
+            // backgroud
+        }
+    }
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -74,7 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     // MARK: - Core Data Saving support
-
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -98,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navck = UINavigationController(rootViewController: ck);
         
         let nb = NaturalBaseViewController()
-        nb.title = "NatureBase"
+        nb.title = "NaturalBase"
         let navnb = UINavigationController(rootViewController: nb)
         
         let set = SetViewController()
@@ -107,6 +119,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tab.viewControllers = [navck, navnb, navset]
         return tab
+    }
+    
+    // MARK: - add Notification
+    func addNotification() -> () {
+        let notifiCenter = UNUserNotificationCenter.current()
+        notifiCenter.delegate = self as? UNUserNotificationCenterDelegate
+     //   let types = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        
+        let ops:UNAuthorizationOptions = [.alert, .badge, .sound]
+        notifiCenter.requestAuthorization(options: ops) { (flag, error) in
+            if flag {
+                print("iOS request notification success")
+            }else{
+                print("iOS 10 request notification fail")
+            }
+        }
     }
 
 }

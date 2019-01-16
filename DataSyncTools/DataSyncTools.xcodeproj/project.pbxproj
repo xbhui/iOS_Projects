@@ -15,7 +15,7 @@
 		7E3A765021E421B90037F963 /* CKDataSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A764F21E421B90037F963 /* CKDataSyncController.swift */; };
 		7E3A765221E421EE0037F963 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A765121E421EE0037F963 /* SetViewController.swift */; };
 		7E3A765521E4230A0037F963 /* RMDataSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A765421E4230A0037F963 /* RMDataSyncController.swift */; };
-		7E8DD8F921E6988700108B30 /* CKObjectAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD8F821E6988700108B30 /* CKObjectAPIController.swift */; };
+		7E8DD8F921E6988700108B30 /* CKCRUDAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD8F821E6988700108B30 /* CKCRUDAPIController.swift */; };
 		7E8DD8FC21E69F6000108B30 /* NaturalBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD8FB21E69F6000108B30 /* NaturalBaseViewController.swift */; };
 		7E8DD91021E6B73D00108B30 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 7E8DD90121E6B73D00108B30 /* README.markdown */; };
 		7E8DD91121E6B73D00108B30 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E8DD90221E6B73D00108B30 /* LICENSE.txt */; };
@@ -39,6 +39,11 @@
 		7E8DD94221E7FA7400108B30 /* Xiaoen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E8DD93D21E7FA7400108B30 /* Xiaoen.jpg */; };
 		7E8DD94321E7FA7400108B30 /* Sam.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E8DD93E21E7FA7400108B30 /* Sam.jpg */; };
 		7E8DD94521E91DA700108B30 /* CKTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD94421E91DA700108B30 /* CKTableViewController.swift */; };
+		7E8DD94721EC568D00108B30 /* CKQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD94621EC568D00108B30 /* CKQueryViewController.swift */; };
+		7E8DD94B21ED294F00108B30 /* CKSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD94A21ED294F00108B30 /* CKSubscriptionViewController.swift */; };
+		7E8DD94D21ED340800108B30 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8DD94C21ED340800108B30 /* UserNotifications.framework */; };
+		7E8DD94F21ED340F00108B30 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */; };
+		7E8DD95121ED3FE100108B30 /* CKConflictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD95021ED3FE100108B30 /* CKConflictViewController.swift */; };
 		7EE87ECC21E54959006A5ECB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE87ECB21E54959006A5ECB /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +58,7 @@
 		7E3A764F21E421B90037F963 /* CKDataSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataSyncController.swift; sourceTree = "<group>"; };
 		7E3A765121E421EE0037F963 /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
 		7E3A765421E4230A0037F963 /* RMDataSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMDataSyncController.swift; sourceTree = "<group>"; };
-		7E8DD8F821E6988700108B30 /* CKObjectAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKObjectAPIController.swift; sourceTree = "<group>"; };
+		7E8DD8F821E6988700108B30 /* CKCRUDAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCRUDAPIController.swift; sourceTree = "<group>"; };
 		7E8DD8FB21E69F6000108B30 /* NaturalBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaturalBaseViewController.swift; sourceTree = "<group>"; };
 		7E8DD90121E6B73D00108B30 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		7E8DD90221E6B73D00108B30 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -84,6 +89,11 @@
 		7E8DD93D21E7FA7400108B30 /* Xiaoen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Xiaoen.jpg; sourceTree = "<group>"; };
 		7E8DD93E21E7FA7400108B30 /* Sam.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sam.jpg; sourceTree = "<group>"; };
 		7E8DD94421E91DA700108B30 /* CKTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKTableViewController.swift; sourceTree = "<group>"; };
+		7E8DD94621EC568D00108B30 /* CKQueryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKQueryViewController.swift; sourceTree = "<group>"; };
+		7E8DD94A21ED294F00108B30 /* CKSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKSubscriptionViewController.swift; sourceTree = "<group>"; };
+		7E8DD94C21ED340800108B30 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		7E8DD95021ED3FE100108B30 /* CKConflictViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConflictViewController.swift; sourceTree = "<group>"; };
 		7EE87EC921E54940006A5ECB /* DataSyncTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DataSyncTools.entitlements; sourceTree = "<group>"; };
 		7EE87ECB21E54959006A5ECB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -93,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8DD94F21ED340F00108B30 /* UserNotificationsUI.framework in Frameworks */,
+				7E8DD94D21ED340800108B30 /* UserNotifications.framework in Frameworks */,
 				7E8DD91821E6BD8200108B30 /* libsqlite3.tbd in Frameworks */,
 				7EE87ECC21E54959006A5ECB /* CloudKit.framework in Frameworks */,
 			);
@@ -264,7 +276,10 @@
 		7E8DD92B21E7C7DC00108B30 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E8DD8F821E6988700108B30 /* CKObjectAPIController.swift */,
+				7E8DD8F821E6988700108B30 /* CKCRUDAPIController.swift */,
+				7E8DD94621EC568D00108B30 /* CKQueryViewController.swift */,
+				7E8DD94A21ED294F00108B30 /* CKSubscriptionViewController.swift */,
+				7E8DD95021ED3FE100108B30 /* CKConflictViewController.swift */,
 				7E8DD92C21E7C85B00108B30 /* SelectStudentViewController.swift */,
 				7E8DD92E21E7C88D00108B30 /* StudentDetailsViewController.swift */,
 				7E8DD94421E91DA700108B30 /* CKTableViewController.swift */,
@@ -304,6 +319,8 @@
 		7EE87ECA21E54959006A5ECB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */,
+				7E8DD94C21ED340800108B30 /* UserNotifications.framework */,
 				7E8DD91721E6BD8200108B30 /* libsqlite3.tbd */,
 				7EE87ECB21E54959006A5ECB /* CloudKit.framework */,
 			);
@@ -343,6 +360,9 @@
 					7E3A763321E41F8B0037F963 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -397,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8DD8F921E6988700108B30 /* CKObjectAPIController.swift in Sources */,
+				7E8DD8F921E6988700108B30 /* CKCRUDAPIController.swift in Sources */,
 				7E8DD91521E6B73D00108B30 /* FMDatabasePool.m in Sources */,
 				7E3A764021E41F8B0037F963 /* DataSyncTools.xcdatamodeld in Sources */,
 				7E8DD93521E7F66C00108B30 /* Tool.swift in Sources */,
@@ -407,10 +427,13 @@
 				7E8DD94521E91DA700108B30 /* CKTableViewController.swift in Sources */,
 				7E8DD8FC21E69F6000108B30 /* NaturalBaseViewController.swift in Sources */,
 				7E3A765021E421B90037F963 /* CKDataSyncController.swift in Sources */,
+				7E8DD94721EC568D00108B30 /* CKQueryViewController.swift in Sources */,
 				7E8DD92F21E7C88D00108B30 /* StudentDetailsViewController.swift in Sources */,
 				7E8DD91621E6B73D00108B30 /* FMResultSet.m in Sources */,
 				7E3A763821E41F8B0037F963 /* AppDelegate.swift in Sources */,
+				7E8DD95121ED3FE100108B30 /* CKConflictViewController.swift in Sources */,
 				7E3A765521E4230A0037F963 /* RMDataSyncController.swift in Sources */,
+				7E8DD94B21ED294F00108B30 /* CKSubscriptionViewController.swift in Sources */,
 				7E8DD92521E6D1ED00108B30 /* CKDataStorage.swift in Sources */,
 				7E8DD91221E6B73D00108B30 /* FMDatabaseQueue.m in Sources */,
 				7E8DD92A21E7C25600108B30 /* StudentTableViewCell.swift in Sources */,

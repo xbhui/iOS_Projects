@@ -8,7 +8,8 @@
 
 import UIKit
 private let kUpdatedMessage = "Student has been updated successfully"
-private let kUnwindSegue = "unwindToMainId"
+private let kRemoveMessage = "Student has been removed successfully"
+
 
 class StudentDetailsViewController: UIViewController {
     
@@ -24,6 +25,7 @@ class StudentDetailsViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var studentImageView: UIImageView!
     private var nameLabel: UILabel!
+    private var gradeLabel: UILabel!
     private var removeBtn: UIButton!
     private var descriptionTextView: UITextView!
     
@@ -41,27 +43,31 @@ class StudentDetailsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector:#selector(StudentDetailsViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
-
     func setupView() {
-        self.view.backgroundColor = UIColor.yellow
+        self.view.backgroundColor = UIColor.white
         scrollView = UIScrollView.init(frame: UIScreen.main.bounds)
         
         studentImageView = UIImageView.init(frame: CGRect.init(x: 20, y: 20, width: UIScreen.main.bounds.width-40, height: 150))
         studentImageView.image = student.image
         scrollView.addSubview(studentImageView)
         
-        nameLabel = UILabel.init(frame: CGRect.init(x: 100, y: 20 + 180, width: UIScreen.main.bounds.width - 40-80, height: 30))
+        nameLabel = UILabel.init(frame: CGRect.init(x: 20, y: 20 + 180, width: 80, height: 30))
         nameLabel.text = student.name
-        nameLabel.textAlignment = .right
+        nameLabel.textAlignment = .left
         scrollView.addSubview(nameLabel)
         
         removeBtn = UIButton.init(type: .roundedRect)
-        removeBtn.frame = CGRect.init(x: 0, y: 20 + 180, width: 80, height: 30)
+        removeBtn.frame = CGRect.init(x: UIScreen.main.bounds.width - 20-80, y: 20 + 180, width: 80, height: 30)
         removeBtn.setTitle("Remove", for: .normal)
+        removeBtn.titleLabel?.textAlignment = .right
         removeBtn.setTitleColor(UIColor.black, for: .normal)
-        
         removeBtn.addTarget(self, action: #selector(removeButtonDidPress(sender:)), for: .touchUpInside)
         scrollView.addSubview(removeBtn)
+        
+        gradeLabel = UILabel.init(frame: CGRect.init(x: 100, y: 20 + 180, width: UIScreen.main.bounds.width - 180, height: 30))
+        gradeLabel.text = student.avggrade
+        gradeLabel.textAlignment = .center
+        scrollView.addSubview(gradeLabel)
         
         descriptionTextView = UITextView.init(frame: CGRect.init(x: 20, y: 20+180+30+20, width: UIScreen.main.bounds.width-40, height: 200))
         descriptionTextView.text = student.text
@@ -112,7 +118,8 @@ class StudentDetailsViewController: UIViewController {
             if let error = error {
                 self.presentMessage(error.localizedDescription)
             } else {
-                self.performSegue(withIdentifier: kUnwindSegue, sender: self)
+                self.presentMessage(kRemoveMessage)
+
             }
         }
     }
