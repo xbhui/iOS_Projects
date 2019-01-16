@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import UserNotifications
 
 public enum PredicateType : Int {
     case pall = 1
@@ -43,6 +44,8 @@ class CKDBManager: NSObject {
         let notification = CKSubscription.NotificationInfo()
         notification.alertBody = "create, update, delete notification"
         notification.shouldBadge = true
+        notification.soundName = "default"
+        notification.shouldSendContentAvailable = true
         subscription.notificationInfo = notification
         publicCloudDatabase.save(subscription) { (subscription, error) in
             if error != nil {

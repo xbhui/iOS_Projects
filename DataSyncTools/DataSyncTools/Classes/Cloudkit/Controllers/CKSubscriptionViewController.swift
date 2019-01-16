@@ -21,6 +21,7 @@ class CKSubscriptionViewController: UIViewController, UITableViewDataSource, UIT
         CKDBManager.saveSbuscriptions()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "CloudkitInfoUpdateNotification"), object: nil)
         
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -12,14 +12,14 @@ import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window?.rootViewController = initTabViewController();
-        self.addNotification()
+        addNotification()
         return true
     }
 
@@ -46,17 +46,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("didReceiveRemoteNotification")
         if application.applicationState == UIApplication.State.active {
             // front
             NotificationCenter.default.post(name: NSNotification.Name.init("CloudkitInfoUpdateNotification"), object: nil)
         }else{
-            UIApplication.init().applicationIconBadgeNumber = 0
             // backgroud
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("didFailToRegisterForRemoteNotificationsWithError")
+
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+          completionHandler(UNNotificationPresentationOptions.sound)
+    }
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -123,19 +139,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - add Notification
     func addNotification() -> () {
-        let notifiCenter = UNUserNotificationCenter.current()
-        notifiCenter.delegate = self as? UNUserNotificationCenterDelegate
-     //   let types = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
-        
-        let ops:UNAuthorizationOptions = [.alert, .badge, .sound]
-        notifiCenter.requestAuthorization(options: ops) { (flag, error) in
-            if flag {
+  
+        let center  = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+            if granted {
                 print("iOS request notification success")
-            }else{
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
                 print("iOS 10 request notification fail")
+                print(error!)
             }
         }
     }
-
 }
 
