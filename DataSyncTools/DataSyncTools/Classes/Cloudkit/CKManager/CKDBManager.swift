@@ -34,28 +34,86 @@ class CKDBManager: NSObject {
     static var publicCloudDatabase: CKDatabase {
         return CKContainer.default().publicCloudDatabase
     }
+    static var privateCloudDatabase: CKDatabase {
+        return CKContainer.default().privateCloudDatabase
+    }
     //MARK: Subscriptions
     static func saveSbuscriptions() {
         
         let subID = String(NSUUID().uuidString)
         let predicate = NSPredicate(value: true)   //no predicate conditions
 
-        let subscription = CKQuerySubscription(recordType: recordType, predicate: predicate, subscriptionID: subID, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
+        let rcsub = CKQuerySubscription(recordType: recordType, predicate: predicate, subscriptionID: subID, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
         let notification = CKSubscription.NotificationInfo()
         notification.alertBody = "create, update, delete notification"
         notification.shouldBadge = true
         notification.soundName = "default"
         notification.shouldSendContentAvailable = true
-        subscription.notificationInfo = notification
-        publicCloudDatabase.save(subscription) { (subscription, error) in
+        rcsub.notificationInfo = notification
+        publicCloudDatabase.save(rcsub) { (subscription, error) in
             if error != nil {
                 print("ping sub failed, almost certainly cause it is already there \(String(describing: error))")
             } else {
                 print("bing subscription saved! \(subID) ")
             }
         }
+        
+        saveZoneSubcription()
+        saveDatabaseSubcription()
     }
     
+    static func saveZoneSubcription() -> () {
+        let zone = CKRecordZone.init(zoneName: "c00000001")
+        privateCloudDatabase.save(zone) { (zone, error) in
+            if error != nil {
+                print("zone save failed")
+            } else {
+                print("zone saved")
+            }
+        }
+        
+        let subzone = CKRecordZoneSubscription.init(zoneID: zone.zoneID)
+        let notifzone = CKSubscription.NotificationInfo()
+        notifzone.alertBody = "zone notification"
+        notifzone.shouldBadge = true
+        notifzone.soundName = "default"
+        notifzone.shouldSendContentAvailable = true
+        subzone.notificationInfo = notifzone
+        
+        privateCloudDatabase.save(subzone) { (sub, error) in
+            if error != nil {
+                print("zone subscription failed")
+            } else {
+                print("zone subscription saved")
+            }
+        }
+    }
+    
+    static func saveDatabaseSubcription() -> () {
+        let subdb = CKDatabaseSubscription.init(subscriptionID: CKSubscription.ID.init("db00001"))
+        let notifdb = CKSubscription.NotificationInfo()
+        notifdb.alertBody = "db notification"
+        notifdb.shouldBadge = true
+        notifdb.soundName = "default"
+        notifdb.shouldSendContentAvailable = true
+        subdb.notificationInfo = notifdb
+        
+        publicCloudDatabase.save(subdb) { (sub, error) in
+            if error != nil {
+                print("db subscription failed")
+            } else {
+                print("db subscription saved")
+            }
+        }
+        
+//        privateCloudDatabase.save(subdb) { (sub, rror) in
+//            if error != nil {
+//                print("db subscription failed")
+//            } else {
+//                print("db subscription saved")
+//            }
+//        }
+    }
     //MARK: Retrieve existing records
     static func fetchAllStudents(_ completion: @escaping (_ records: [Student]?, _ error: NSError?) -> Void) {
         let predicate = NSPredicate(value: true)
@@ -169,6 +227,22 @@ class CKDBManager: NSObject {
             }
         })
     }
+    
+    
+//    + (void)saveRecords:(NSArray *)records complete:(void(^)(NSArray *recordIDs, NSError *error))complete {
+//
+//    records = [records valueForKeyPath:@"record"];
+//
+//    CKModifyRecordsOperation *operation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
+//
+//    operation.savePolicy = CKRecordSaveAllKeys;
+//
+//    [operation setModifyRecordsCompletionBlock:^(NSArray<CKRecord *> * _Nullable savedRecords, NSArray<CKRecordID *> * _Nullable deletedRecordIDs, NSError * _Nullable operationError) {
+//    complete([savedRecords valueForKeyPath:@"recordID.recordName"], operationError);
+//    }];
+//
+//    [[self dataBase] addOperation:operation];
+//    }
     
     func pushRecordChangesForZoneID(recordZoneID: CKRecordZone.ID) {
         // ...
