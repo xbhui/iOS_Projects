@@ -103,6 +103,7 @@ class CKSubscriptionViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = StudentDetailsViewController()
         detail.student = students[indexPath.row]
+        detail.frompage = FromPage.fpsubscrpiton
         self.navigationController?.pushViewController(detail, animated: true)
     }
     

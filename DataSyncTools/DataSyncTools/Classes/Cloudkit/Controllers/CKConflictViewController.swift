@@ -100,6 +100,7 @@ class CKConflictViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = StudentDetailsViewController()
         detail.student = students[indexPath.row]
+        detail.frompage = FromPage.fpconflict
         self.navigationController?.pushViewController(detail, animated: true)
     }
     

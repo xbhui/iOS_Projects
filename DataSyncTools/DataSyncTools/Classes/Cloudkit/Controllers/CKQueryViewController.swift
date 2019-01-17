@@ -99,6 +99,7 @@ class CKQueryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = StudentDetailsViewController()
         detail.student = students[indexPath.row]
+        detail.frompage = FromPage.fpquery
         self.navigationController?.pushViewController(detail, animated: true)
     }
  

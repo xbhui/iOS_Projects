@@ -58,8 +58,8 @@ class CKDBManager: NSObject {
             }
         }
         
-        saveZoneSubcription()
-        saveDatabaseSubcription()
+     //   saveZoneSubcription()
+    //  saveDatabaseSubcription()
     }
     
     static func saveZoneSubcription() -> () {
@@ -105,14 +105,6 @@ class CKDBManager: NSObject {
                 print("db subscription saved")
             }
         }
-        
-//        privateCloudDatabase.save(subdb) { (sub, rror) in
-//            if error != nil {
-//                print("db subscription failed")
-//            } else {
-//                print("db subscription saved")
-//            }
-//        }
     }
     //MARK: Retrieve existing records
     static func fetchAllStudents(_ completion: @escaping (_ records: [Student]?, _ error: NSError?) -> Void) {
@@ -166,7 +158,6 @@ class CKDBManager: NSObject {
         publicCloudDatabase.add(operation)
     }
     
-    
     //MARK: add a new record
     static func createRecord(_ recordData: [String: String], completion: @escaping (_ record: CKRecord?, _ error: NSError?) -> Void) {
         
@@ -218,6 +209,36 @@ class CKDBManager: NSObject {
         }
     }
     
+    //MARK: with conflict policy for updating the record by recordId
+    static func saveForCoflictRevolustion(_ recordId: String, text: String, completion: @escaping (CKRecord?, NSError?) -> Void) {
+        
+        let recordIDToSave = CKRecord.ID(recordName: recordId)
+        publicCloudDatabase.fetch(withRecordID: recordIDToSave) { (record, error) in
+            
+            if let recordToSave = record {
+                //Modify the record value here
+                recordToSave.setValue(text, forKey: stext)
+           //     recordToSave.setObject("value" as __CKRecordObjCValue, forKey: "text")
+                let modifyRecords = CKModifyRecordsOperation(recordsToSave:[recordToSave], recordIDsToDelete: nil)
+                modifyRecords.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.allKeys
+                //    modifyRecords.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+                //   modifyRecords.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.ifServerRecordUnchanged
+                modifyRecords.qualityOfService = QualityOfService.userInitiated
+                modifyRecords.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
+                    if error == nil {
+                        print("Modified")
+                    }else {
+                        print(error as Any)
+                    }
+                }
+                
+                publicCloudDatabase.add(modifyRecords)
+            }else{
+                print(error.debugDescription)
+            }
+        }
+    }
+    
     //MARK: remove the record
     static func removeRecord(_ recordId: String, completion: @escaping (String?, NSError?) -> Void) {
         let recordId = CKRecord.ID(recordName: recordId)
@@ -228,59 +249,6 @@ class CKDBManager: NSObject {
         })
     }
     
-    
-//    + (void)saveRecords:(NSArray *)records complete:(void(^)(NSArray *recordIDs, NSError *error))complete {
-//
-//    records = [records valueForKeyPath:@"record"];
-//
-//    CKModifyRecordsOperation *operation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
-//
-//    operation.savePolicy = CKRecordSaveAllKeys;
-//
-//    [operation setModifyRecordsCompletionBlock:^(NSArray<CKRecord *> * _Nullable savedRecords, NSArray<CKRecordID *> * _Nullable deletedRecordIDs, NSError * _Nullable operationError) {
-//    complete([savedRecords valueForKeyPath:@"recordID.recordName"], operationError);
-//    }];
-//
-//    [[self dataBase] addOperation:operation];
-//    }
-    
-    func pushRecordChangesForZoneID(recordZoneID: CKRecordZone.ID) {
-        // ...
-//        modifyRecordsOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDs, error) -> Void in
-//            if (error != nil) {
-//                if error.code == CKErrorCode.PartialFailure.rawValue {
-//                    if let errorDict = error.userInfo?[CKPartialErrorsByItemIDKey] as? [CKRecordID : NSError] {
-//                        for (recordID, partialError) in errorDict {
-//                            if partialError.code == CKErrorCode.ServerRecordChanged.rawValue {
-//                                if let userInfo = partialError.userInfo {
-//                                    let serverRecord = userInfo[CKRecordChangedErrorServerRecordKey] as? CKRecord
-//                                    // serverRecord will always be nil
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-    }
-//    func getLatestServerChanges (_ completion: @escaping ((_ hasIncomingChanges: Bool) -> Void)) {
-//
-//        let changeToken = UserDefaults.standard.serverChangeToken
-//
-//        CKDBManager.publicCloudDatabase.queryUpdates(sinceDate: Date(timeIntervalSince1970: 0)) { changedTasks, deletedTasksIds, error in
-//            for task in changedTasks {
-////                self.localRepository.saveTask(task, completion: { (task) in
-////                    print("saved to local db")
-////                })
-//            }
-//            for remoteId in deletedTasksIds {
-////                self.localRepository.deleteTask(objectId: remoteId, completion: { (success) in
-////                    print(">>>>  deleted from local db: \(remoteId) \(success)")
-////                })
-//            }
-//            completion(changedTasks.count > 0 || deletedTasksIds.count > 0)
-//        }
-//    }
     //MARK: check that user is logged
     static func checkLoginStatus(_ handler: @escaping (_ islogged: Bool) -> Void) {
         CKContainer.default().accountStatus{ accountStatus, error in
@@ -295,37 +263,7 @@ class CKDBManager: NSObject {
             }
         }
     }
-    
-    func save(parameters: String) ->  () {
-        
-        let recordIDToSave = CKRecord.ID(recordName: "recordID")
-        let publicData = CKContainer.default().publicCloudDatabase
-    
-        publicData.fetch(withRecordID: recordIDToSave) { (record, error) in
-        
-            if let recordToSave = record {
-        
-                //Modify the record value here
-                recordToSave.setObject("value" as __CKRecordObjCValue, forKey: "key")
-            
-                let modifyRecords = CKModifyRecordsOperation(recordsToSave:[recordToSave], recordIDsToDelete: nil)
-                modifyRecords.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.allKeys
-                modifyRecords.qualityOfService = QualityOfService.userInitiated
-                modifyRecords.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
-                        if error == nil {
-                            print("Modified")
-                        }else {
-                            print(error as Any)
-                        }
-                    }
-                
-                publicData.add(modifyRecords)
-            }else{
-                print(error.debugDescription)
-            }
-        }
-    }
-    
+
     func getDatabase(type : DatabaseType ) -> (CKDatabase) {
         let container = CKContainer.default();
         if (type == DatabaseType.dbprivate) {
@@ -335,60 +273,4 @@ class CKDBManager: NSObject {
         }
         return container.sharedCloudDatabase;
     }
-    
-//    public extension UserDefaults {
-//
-//        var serverChangeToken: CKServerChangeToken? {
-//            get {
-//                guard let data = self.value(forKey: "ChangeToken") as? Data else {
-//                    return nil
-//                }
-//                guard let token = NSKeyedUnarchiver.unarchiveObject(with: data) as? CKServerChangeToken else {
-//                    return nil
-//                }
-//
-//                return token
-//            }
-//            set {
-//                if let token = newValue {
-//                    let data = NSKeyedArchiver.archivedData(withRootObject: token)
-//                    self.set(data, forKey: "ChangeToken")
-//                    self.synchronize()
-//                } else {
-//                    self.removeObject(forKey: "ChangeToken")
-//                }
-//            }
-//        }
-//    }
-//    1.3）刷新区更改令牌
-//
-//    您可以通过刷新区更改令牌：使用的NSKeyedArchiver执行 CKFetchRecordChangesOperation， fetchRecordChangesCompletionBlock回报CKServerChangeToken 保存到UserDefaults（例如）） 。此操作的任务是刷新令牌，并在结束同步过程中执行该令牌。
-//    
-//    我在私有云数据库中有自定义区域。 我使用OperationQueue来建立不同的依赖于彼此的异步过程。一些操作有自己的操作队列。
-//    
-//    步骤：
-//    
-//    1）检查我的自定义区域是存在
-//    
-//    1.1）如果没有自定义区域
-//    
-//    1.2）创建新的自定义区域。 （可选：添加记录）
-//    
-//    1.3）刷新区更改令牌
-//    
-//    您可以通过刷新区更改令牌：使用的NSKeyedArchiver执行 CKFetchRecordChangesOperation， fetchRecordChangesCompletionBlock回报CKServerChangeToken 保存到UserDefaults（例如）） 。此操作的任务是刷新令牌，并在结束同步过程中执行该令牌。
-//    
-//    2）如果已经有自定义区域
-//    
-//    2.1）获取使用以前保存区更改令牌从区域变化。 （CKFetchRecordChangesOperation）
-//    
-//    2.2）更新和删除本地记录。
-//    
-//    2.3）刷新区域更改标记。
-//    
-//    2.4）检查本地更改（我使用最后一个云同步时间戳来检查后面修改了哪些记录）。
-//    
-//    2.5）将记录上传到云工具包数据库
-//    
-//    2.6）再次刷新区域更改标记。
 }

@@ -10,6 +10,11 @@ import UIKit
 private let kUpdatedMessage = "Student has been updated successfully"
 private let kRemoveMessage = "Student has been removed successfully"
 
+public enum FromPage : Int {
+    case fpconflict = 1
+    case fpsubscrpiton
+    case fpquery
+}
 
 class StudentDetailsViewController: UIViewController {
     
@@ -21,6 +26,7 @@ class StudentDetailsViewController: UIViewController {
     }
     
     var student: Student!
+    var frompage: FromPage!
     
     private var scrollView: UIScrollView!
     private var studentImageView: UIImageView!
@@ -29,8 +35,10 @@ class StudentDetailsViewController: UIViewController {
     private var removeBtn: UIButton!
     private var descriptionTextView: UITextView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let rightItem = UIBarButtonItem(
             title: "Save",
             style: .plain,
@@ -99,13 +107,25 @@ class StudentDetailsViewController: UIViewController {
         let updatedText = descriptionTextView.text!
         
         shouldAnimateIndicator(true)
-        CKDBManager.updateRecord(identifier, text: updatedText) { record, error in
-            self.shouldAnimateIndicator(false)
-            if let error = error {
-                self.presentMessage(error.localizedDescription)
-            } else if let record = record {
-                self.student.text = record.value(forKey: stext) as! String
-                self.presentMessage(kUpdatedMessage)
+        if frompage == FromPage.fpconflict {
+            CKDBManager.saveForCoflictRevolustion(identifier, text: updatedText) { record, error in
+                self.shouldAnimateIndicator(false)
+                if let error = error {
+                    self.presentMessage(error.localizedDescription)
+                } else if let record = record {
+                    self.student.text = record.value(forKey: stext) as! String
+                    self.presentMessage(kUpdatedMessage)
+                }
+            }
+        }else {
+            CKDBManager.updateRecord(identifier, text: updatedText) { record, error in
+                self.shouldAnimateIndicator(false)
+                if let error = error {
+                    self.presentMessage(error.localizedDescription)
+                } else if let record = record {
+                    self.student.text = record.value(forKey: stext) as! String
+                    self.presentMessage(kUpdatedMessage)
+                }
             }
         }
     }

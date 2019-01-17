@@ -30,8 +30,8 @@ class CKDataSyncController: UIViewController, UITableViewDataSource, UITableView
             let query = CKQueryViewController()
             self.navigationController?.pushViewController(query, animated: true)
         }else if(indexPath.row == row.three.rawValue) {
-
-            
+            let conflict = CKConflictViewController()
+            self.navigationController?.pushViewController(conflict, animated: true)
         }else if(indexPath.row == row.four.rawValue) {
             let sub = CKSubscriptionViewController()
             self.navigationController?.pushViewController(sub, animated: true)
