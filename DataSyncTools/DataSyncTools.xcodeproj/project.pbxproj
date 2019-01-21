@@ -48,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7E3A763421E41F8B0037F963 /* DataSyncTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataSyncTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E3A763421E41F8B0037F963 /* Sync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3A763721E41F8B0037F963 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E3A763C21E41F8B0037F963 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E3A763F21E41F8B0037F963 /* DataSyncTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataSyncTools.xcdatamodel; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		7E3A763521E41F8B0037F963 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7E3A763421E41F8B0037F963 /* DataSyncTools.app */,
+				7E3A763421E41F8B0037F963 /* Sync.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 			);
 			name = DataSyncTools;
 			productName = DataSyncTools;
-			productReference = 7E3A763421E41F8B0037F963 /* DataSyncTools.app */;
+			productReference = 7E3A763421E41F8B0037F963 /* Sync.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -586,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "DataSyncTools/System Files/DataSyncTools.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S2S2PFZHQ3;
@@ -595,7 +596,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Developer.DataSyncTools;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sync;
 				SWIFT_OBJC_BRIDGING_HEADER = "DataSyncTools/Resources/FMDB/FMDB-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -606,6 +607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "DataSyncTools/System Files/DataSyncTools.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S2S2PFZHQ3;
@@ -615,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Developer.DataSyncTools;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sync;
 				SWIFT_OBJC_BRIDGING_HEADER = "DataSyncTools/Resources/FMDB/FMDB-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
