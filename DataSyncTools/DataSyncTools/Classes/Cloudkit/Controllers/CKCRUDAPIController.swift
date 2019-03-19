@@ -53,13 +53,13 @@ class CKCRUDAPIController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func reloadData() {
-        CKDBManager.checkLoginStatus { isLogged in
-            if isLogged {
+//        CKDBManager.checkLoginStatus { isLogged in
+//            if isLogged {
                 self.updatData()
-            } else {
-                print("account unavailable")
-            }
-        }
+//            } else {
+//                print("account unavailable")
+//            }
+ //       }
     }
     func updatData() {
         
@@ -115,6 +115,7 @@ class CKCRUDAPIController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = StudentDetailsViewController()
         detail.student = students[indexPath.row]

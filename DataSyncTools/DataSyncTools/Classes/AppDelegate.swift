@@ -9,17 +9,20 @@
 import UIKit
 import CoreData
 import UserNotifications
-
+import AWSAppSync
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
+    var appSyncClient: AWSAppSyncClient?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window?.rootViewController = initTabViewController();
-        addNotification()
+        addRemoteNotification()
+        appSyncClientConfiguration()
         return true
     }
 
@@ -35,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -48,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("didReceiveRemoteNotification")
         if application.applicationState == UIApplication.State.active {
             // front
             NotificationCenter.default.post(name: NSNotification.Name.init("CloudkitInfoUpdateNotification"), object: nil)
@@ -56,20 +59,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // backgroud
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
+        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("didRegisterForRemoteNotificationsWithDeviceToken")
+        let tokenParts = deviceToken.map{ data in String(format: "%02.2hhx", data) }//32 bites to hex
+        let token = tokenParts.joined()
+        //send this token to your provider(server)
+        print("Device Token: \(token)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("didFailToRegisterForRemoteNotificationsWithError")
-
+          print("Failed to register: \(error)")
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    }
+        
+//        let userInfo = response.notification.request.content.userInfo
+//            if aps["content-available"] as? Int == 1 {
+//                // do something here
+//            }
+//        }
+//    
+
+        
+        if response.actionIdentifier == UNNotificationDismissActionIdentifier {
+            // The user dismissed the notification without taking action
+        }
+        else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            // The user launched the app
+        }
     
+    }
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
           completionHandler(UNNotificationPresentationOptions.sound)
     }
@@ -123,7 +144,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tab = UITabBarController()
         let ck = CKDataSyncController()
         ck.title = "CloudKit"
-        let navck = UINavigationController(rootViewController: ck);
+        let navck = UINavigationController(rootViewController: ck)
+        
+        let aws = AWSViewController()
+        aws.title = "AWS"
+        let navaws = UINavigationController(rootViewController: aws)
         
         let nb = NaturalBaseViewController()
         nb.title = "NaturalBase"
@@ -133,25 +158,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         set.title = "Set"
         let navset = UINavigationController(rootViewController: set)
         
-        tab.viewControllers = [navck, navnb, navset]
+        tab.viewControllers = [navck, navaws, navnb, navset]
         return tab
     }
     
     // MARK: - add Notification
-    func addNotification() -> () {
-  
+    func addRemoteNotification() -> () {
         let center  = UNUserNotificationCenter.current()
         center.delegate = self
         center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
             if granted {
-                print("iOS request notification success")
+                print("iOS 10 request notification success")
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
             } else {
                 print("iOS 10 request notification fail")
-                print(error!)
+              //  print(error!)
             }
+        }
+    }
+    
+    func appSyncClientConfiguration()->() {
+        do {
+            // initialize the AppSync client configuration configuration
+            let cacheConfiguration = try AWSAppSyncCacheConfiguration()
+            
+            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncServiceConfig: AWSAppSyncServiceConfig(),
+            cacheConfiguration: cacheConfiguration)
+            // initialize app sync client
+            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
+            
+            // set id as the cache key for objects
+            appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
+            
+            print("AppSyncClient initialized with cacheConfiguration: \(cacheConfiguration)")
+        } catch {
+            print("Error initializing AppSync client. \(error)")
         }
     }
 }

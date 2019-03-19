@@ -1,0 +1,118 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type ModelTodoConnection {
+  items: [Todo]
+  nextToken: String
+}
+
+type Mutation {
+  createTodo(input: CreateTodoInput!): Todo
+  deleteTodo(input: DeleteTodoInput!): Todo
+  updateTodo(input: UpdateTodoInput!): Todo
+}
+
+type Query {
+  getTodo(id: ID!): Todo
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+}
+
+type Subscription {
+  onCreateTodo: Todo @aws_subscribe(mutations : ["createTodo"])
+  onDeleteTodo: Todo @aws_subscribe(mutations : ["deleteTodo"])
+  onUpdateTodo: Todo @aws_subscribe(mutations : ["updateTodo"])
+}
+
+type Todo {
+  description: String
+  id: ID!
+  name: String!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateTodoInput {
+  description: String
+  id: ID
+  name: String!
+}
+
+input DeleteTodoInput {
+  id: ID
+}
+
+input ModelBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input ModelIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input ModelIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input ModelStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input ModelTodoFilterInput {
+  and: [ModelTodoFilterInput]
+  description: ModelStringFilterInput
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  not: ModelTodoFilterInput
+  or: [ModelTodoFilterInput]
+}
+
+input UpdateTodoInput {
+  description: String
+  id: ID!
+  name: String
+}

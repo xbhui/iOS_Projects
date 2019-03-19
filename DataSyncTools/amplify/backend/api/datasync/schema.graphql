@@ -1,0 +1,20 @@
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
+
+input CreateTodoInput {
+	id: ID
+	name: String!
+	description: String
+}
+
+input DeleteTodoInput {
+	id: ID
+}
+
+input ModelBooleanFilterInput {
+	ne: Boolean
+	eq: Boolean
+}

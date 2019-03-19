@@ -44,12 +44,14 @@ class CKDBManager: NSObject {
         let predicate = NSPredicate(value: true)   //no predicate conditions
 
         let rcsub = CKQuerySubscription(recordType: recordType, predicate: predicate, subscriptionID: subID, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
+        
         let notification = CKSubscription.NotificationInfo()
         notification.alertBody = "create, update, delete notification"
         notification.shouldBadge = true
         notification.soundName = "default"
         notification.shouldSendContentAvailable = true
         rcsub.notificationInfo = notification
+        
         publicCloudDatabase.save(rcsub) { (subscription, error) in
             if error != nil {
                 print("ping sub failed, almost certainly cause it is already there \(String(describing: error))")
@@ -57,6 +59,15 @@ class CKDBManager: NSObject {
                 print("bing subscription saved! \(subID) ")
             }
         }
+        
+        privateCloudDatabase.save(rcsub) { (subscription, error) in
+            if error != nil {
+                print("ping sub failed, almost certainly cause it is already there \(String(describing: error))")
+            } else {
+                print("bing subscription saved! \(subID) ")
+            }
+        }
+        
         
      //   saveZoneSubcription()
     //  saveDatabaseSubcription()
@@ -117,6 +128,13 @@ class CKDBManager: NSObject {
                 completion(students, error as NSError?)
             }
         }
+        
+//        privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+//            let students = records?.map(Student.init)
+//            DispatchQueue.main.async {
+//                completion(students, error as NSError?)
+//            }
+//        }
     }
     
     //MARK: Query with predicate
@@ -161,29 +179,58 @@ class CKDBManager: NSObject {
     //MARK: add a new record
     static func createRecord(_ recordData: [String: String], completion: @escaping (_ record: CKRecord?, _ error: NSError?) -> Void) {
         
-        let recordname = recordData["name"] as! String
-        let record = CKRecord.init(recordType: recordType, recordID: CKRecord.ID.init(recordName: recordname))
+        let privatezone = CKRecordZone.init(zoneID: CKRecordZone.ID.init(zoneName: "private00000001", ownerName: "__defaultOwner__"))
+        let private_recordname = recordData["name"] as! String
+        let private_record = CKRecord.init(recordType: recordType, recordID: CKRecord.ID.init(recordName: private_recordname, zoneID: privatezone.zoneID))
+
+        for (key, value) in recordData {
+            if key == spicture {
+                if let path = Bundle.main.path(forResource: value, ofType: "jpg") {
+                    do {
+                        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                        private_record.setValue(data, forKey: key)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }else if key == sgrade {
+                private_record.setValue(Double(value), forKey: key)
+            } else {
+                private_record.setValue(value, forKey: key)
+            }
+        }
+        
+    //save to private
+        privateCloudDatabase.save(private_record) { (savedRecord, error) in
+            DispatchQueue.main.async {
+                completion(private_record, error as NSError?)
+            }
+        }
+        
+        let public_recordname = recordData["name"] as! String
+        let public_record = CKRecord.init(recordType: recordType, recordID: CKRecord.ID.init(recordName: public_recordname))
         
         for (key, value) in recordData {
             if key == spicture {
                 if let path = Bundle.main.path(forResource: value, ofType: "jpg") {
                     do {
                         let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                        record.setValue(data, forKey: key)
+                        public_record.setValue(data, forKey: key)
                     } catch let error {
                         print(error)
                     }
                 }
             }else if key == sgrade {
-                record.setValue(Double(value), forKey: key)
+                public_record.setValue(Double(value), forKey: key)
             } else {
-                record.setValue(value, forKey: key)
+                public_record.setValue(value, forKey: key)
             }
         }
         
-        publicCloudDatabase.save(record) { (savedRecord, error) in
+        //save to private
+        publicCloudDatabase.save(public_record) { (savedRecord, error) in
             DispatchQueue.main.async {
-                completion(record, error as NSError?)
+                completion(public_record, error as NSError?)
             }
         }
     }
@@ -242,7 +289,15 @@ class CKDBManager: NSObject {
     //MARK: remove the record
     static func removeRecord(_ recordId: String, completion: @escaping (String?, NSError?) -> Void) {
         let recordId = CKRecord.ID(recordName: recordId)
+  
         publicCloudDatabase.delete(withRecordID: recordId, completionHandler: { deletedRecordId, error in
+            DispatchQueue.main.async {
+                completion (deletedRecordId?.recordName, error as NSError?)
+            }
+        })
+        
+        
+        privateCloudDatabase.delete(withRecordID: recordId, completionHandler: { deletedRecordId, error in
             DispatchQueue.main.async {
                 completion (deletedRecordId?.recordName, error as NSError?)
             }

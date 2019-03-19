@@ -1,0 +1,14 @@
+{
+    "datasync": {
+        "awscloudformation": {
+            "AuthRoleName": "datasynctools-20190212175020-authRole",
+            "UnauthRoleArn": "arn:aws:iam::634968859274:role/datasynctools-20190212175020-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::634968859274:role/datasynctools-20190212175020-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "datasynctools-20190212175020-deployment",
+            "UnauthRoleName": "datasynctools-20190212175020-unauthRole",
+            "StackName": "datasynctools-20190212175020",
+            "StackId": "arn:aws:cloudformation:us-west-2:634968859274:stack/datasynctools-20190212175020/b91058b0-2f31-11e9-a07d-0299cad2cdb6"
+        }
+    }
+}

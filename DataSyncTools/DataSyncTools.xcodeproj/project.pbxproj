@@ -15,6 +15,15 @@
 		7E3A765021E421B90037F963 /* CKDataSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A764F21E421B90037F963 /* CKDataSyncController.swift */; };
 		7E3A765221E421EE0037F963 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A765121E421EE0037F963 /* SetViewController.swift */; };
 		7E3A765521E4230A0037F963 /* RMDataSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A765421E4230A0037F963 /* RMDataSyncController.swift */; };
+		7E5B75FB221395D500CE7010 /* AWSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B75FA221395D500CE7010 /* AWSViewController.swift */; };
+		7E5B75FD2213974400CE7010 /* AWSCRUDAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B75FC2213974400CE7010 /* AWSCRUDAPIController.swift */; };
+		7E5B76022213B15500CE7010 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B76012213B15500CE7010 /* awsconfiguration.json */; };
+		7E8706782215FE3600977523 /* EventsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8706772215FE3600977523 /* EventsAPI.swift */; };
+		7E87067B22160CEC00977523 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E87067A22160CEC00977523 /* EventCell.swift */; };
+		7E87067D2216115E00977523 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E87067C2216115E00977523 /* EventDetailsViewController.swift */; };
+		7E87067F2216117C00977523 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E87067E2216117C00977523 /* AddEventViewController.swift */; };
+		7E870681221625E400977523 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E870680221625E400977523 /* CommentCell.swift */; };
+		7E8890CA222DA2FA004E9264 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8890C9222DA2FA004E9264 /* CloudKit.framework */; };
 		7E8DD8F921E6988700108B30 /* CKCRUDAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD8F821E6988700108B30 /* CKCRUDAPIController.swift */; };
 		7E8DD8FC21E69F6000108B30 /* NaturalBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD8FB21E69F6000108B30 /* NaturalBaseViewController.swift */; };
 		7E8DD91021E6B73D00108B30 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 7E8DD90121E6B73D00108B30 /* README.markdown */; };
@@ -44,10 +53,13 @@
 		7E8DD94D21ED340800108B30 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8DD94C21ED340800108B30 /* UserNotifications.framework */; };
 		7E8DD94F21ED340F00108B30 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */; };
 		7E8DD95121ED3FE100108B30 /* CKConflictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DD95021ED3FE100108B30 /* CKConflictViewController.swift */; };
-		7EE87ECC21E54959006A5ECB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE87ECB21E54959006A5ECB /* CloudKit.framework */; };
+		EE5F0467F774C8408B4DF2A0 /* Pods_DataSyncTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACBBBDB79E6A0EBCF1228AB /* Pods_DataSyncTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4ACBBBDB79E6A0EBCF1228AB /* Pods_DataSyncTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataSyncTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		743342F9C1035073A9ED7A4C /* Pods-DataSyncTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataSyncTools.release.xcconfig"; path = "Target Support Files/Pods-DataSyncTools/Pods-DataSyncTools.release.xcconfig"; sourceTree = "<group>"; };
+		7E020A8F21FFDC87004E832B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7E3A763421E41F8B0037F963 /* Sync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3A763721E41F8B0037F963 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E3A763C21E41F8B0037F963 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +70,15 @@
 		7E3A764F21E421B90037F963 /* CKDataSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKDataSyncController.swift; sourceTree = "<group>"; };
 		7E3A765121E421EE0037F963 /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
 		7E3A765421E4230A0037F963 /* RMDataSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMDataSyncController.swift; sourceTree = "<group>"; };
+		7E5B75FA221395D500CE7010 /* AWSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSViewController.swift; sourceTree = "<group>"; };
+		7E5B75FC2213974400CE7010 /* AWSCRUDAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSCRUDAPIController.swift; sourceTree = "<group>"; };
+		7E5B76012213B15500CE7010 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
+		7E8706772215FE3600977523 /* EventsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAPI.swift; sourceTree = "<group>"; };
+		7E87067A22160CEC00977523 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		7E87067C2216115E00977523 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		7E87067E2216117C00977523 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		7E870680221625E400977523 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		7E8890C9222DA2FA004E9264 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7E8DD8F821E6988700108B30 /* CKCRUDAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCRUDAPIController.swift; sourceTree = "<group>"; };
 		7E8DD8FB21E69F6000108B30 /* NaturalBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaturalBaseViewController.swift; sourceTree = "<group>"; };
 		7E8DD90121E6B73D00108B30 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
@@ -95,7 +116,7 @@
 		7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		7E8DD95021ED3FE100108B30 /* CKConflictViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConflictViewController.swift; sourceTree = "<group>"; };
 		7EE87EC921E54940006A5ECB /* DataSyncTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DataSyncTools.entitlements; sourceTree = "<group>"; };
-		7EE87ECB21E54959006A5ECB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F89DCCB489A16B4E85601F85 /* Pods-DataSyncTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataSyncTools.debug.xcconfig"; path = "Target Support Files/Pods-DataSyncTools/Pods-DataSyncTools.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,22 +124,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8890CA222DA2FA004E9264 /* CloudKit.framework in Frameworks */,
 				7E8DD94F21ED340F00108B30 /* UserNotificationsUI.framework in Frameworks */,
 				7E8DD94D21ED340800108B30 /* UserNotifications.framework in Frameworks */,
 				7E8DD91821E6BD8200108B30 /* libsqlite3.tbd in Frameworks */,
-				7EE87ECC21E54959006A5ECB /* CloudKit.framework in Frameworks */,
+				EE5F0467F774C8408B4DF2A0 /* Pods_DataSyncTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6EDF169AC3CC0E09F8752461 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F89DCCB489A16B4E85601F85 /* Pods-DataSyncTools.debug.xcconfig */,
+				743342F9C1035073A9ED7A4C /* Pods-DataSyncTools.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7E3A762B21E41F8B0037F963 = {
 			isa = PBXGroup;
 			children = (
 				7E3A763621E41F8B0037F963 /* DataSyncTools */,
 				7E3A763521E41F8B0037F963 /* Products */,
 				7EE87ECA21E54959006A5ECB /* Frameworks */,
+				6EDF169AC3CC0E09F8752461 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +175,8 @@
 		7E3A764C21E41FB80037F963 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7E8890C8221797D9004E9264 /* Firebase */,
+				7E5B75F82213953900CE7010 /* AWS */,
 				7E8DD93321E7F63900108B30 /* Common */,
 				7E8DD8FA21E69F0C00108B30 /* NatureBase */,
 				7E3A765321E422AB0037F963 /* Realm */,
@@ -150,6 +184,7 @@
 				7E3A763721E41F8B0037F963 /* AppDelegate.swift */,
 				7E3A765121E421EE0037F963 /* SetViewController.swift */,
 				7E3A764F21E421B90037F963 /* CKDataSyncController.swift */,
+				7E5B75FA221395D500CE7010 /* AWSViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -187,6 +222,42 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		7E5B75F82213953900CE7010 /* AWS */ = {
+			isa = PBXGroup;
+			children = (
+				7E87067922160CC600977523 /* Views */,
+				7E8706772215FE3600977523 /* EventsAPI.swift */,
+				7E5B75F92213956600CE7010 /* Controllers */,
+			);
+			path = AWS;
+			sourceTree = "<group>";
+		};
+		7E5B75F92213956600CE7010 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E5B75FC2213974400CE7010 /* AWSCRUDAPIController.swift */,
+				7E87067C2216115E00977523 /* EventDetailsViewController.swift */,
+				7E87067E2216117C00977523 /* AddEventViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7E87067922160CC600977523 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E87067A22160CEC00977523 /* EventCell.swift */,
+				7E870680221625E400977523 /* CommentCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7E8890C8221797D9004E9264 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		7E8DD8FA21E69F0C00108B30 /* NatureBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +269,7 @@
 		7E8DD8FF21E6B6E900108B30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E5B76012213B15500CE7010 /* awsconfiguration.json */,
 				7E8DD93621E7F80100108B30 /* StudentsInfo */,
 				7E8DD90021E6B73D00108B30 /* FMDB */,
 			);
@@ -291,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				7E8DD93421E7F66C00108B30 /* Tool.swift */,
+				7E020A8F21FFDC87004E832B /* PrefixHeader.pch */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -319,10 +392,11 @@
 		7EE87ECA21E54959006A5ECB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E8890C9222DA2FA004E9264 /* CloudKit.framework */,
 				7E8DD94E21ED340F00108B30 /* UserNotificationsUI.framework */,
 				7E8DD94C21ED340800108B30 /* UserNotifications.framework */,
 				7E8DD91721E6BD8200108B30 /* libsqlite3.tbd */,
-				7EE87ECB21E54959006A5ECB /* CloudKit.framework */,
+				4ACBBBDB79E6A0EBCF1228AB /* Pods_DataSyncTools.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -334,9 +408,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E3A764921E41F8C0037F963 /* Build configuration list for PBXNativeTarget "DataSyncTools" */;
 			buildPhases = (
+				DEEE3A529313E1956F7713B0 /* [CP] Check Pods Manifest.lock */,
 				7E3A763021E41F8B0037F963 /* Sources */,
 				7E3A763121E41F8B0037F963 /* Frameworks */,
 				7E3A763221E41F8B0037F963 /* Resources */,
+				B3198E5C480306B0817B49AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -398,6 +474,7 @@
 			files = (
 				7E8DD94021E7FA7400108B30 /* LiMei.jpg in Resources */,
 				7E8DD94221E7FA7400108B30 /* Xiaoen.jpg in Resources */,
+				7E5B76022213B15500CE7010 /* awsconfiguration.json in Resources */,
 				7E3A764521E41F8C0037F963 /* LaunchScreen.storyboard in Resources */,
 				7E8DD94321E7FA7400108B30 /* Sam.jpg in Resources */,
 				7E8DD94121E7FA7400108B30 /* Kuke.jpg in Resources */,
@@ -412,6 +489,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B3198E5C480306B0817B49AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DataSyncTools/Pods-DataSyncTools-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAppSync/AWSAppSync.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAppSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DataSyncTools/Pods-DataSyncTools-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEEE3A529313E1956F7713B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DataSyncTools-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7E3A763021E41F8B0037F963 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -422,11 +552,16 @@
 				7E3A764021E41F8B0037F963 /* DataSyncTools.xcdatamodeld in Sources */,
 				7E8DD93521E7F66C00108B30 /* Tool.swift in Sources */,
 				7E3A765221E421EE0037F963 /* SetViewController.swift in Sources */,
+				7E870681221625E400977523 /* CommentCell.swift in Sources */,
 				7E8DD92D21E7C85B00108B30 /* SelectStudentViewController.swift in Sources */,
 				7E8DD92321E6D1CB00108B30 /* CKDBManager.swift in Sources */,
 				7E8DD94521E91DA700108B30 /* CKTableViewController.swift in Sources */,
+				7E87067F2216117C00977523 /* AddEventViewController.swift in Sources */,
+				7E87067D2216115E00977523 /* EventDetailsViewController.swift in Sources */,
 				7E8DD8FC21E69F6000108B30 /* NaturalBaseViewController.swift in Sources */,
 				7E3A765021E421B90037F963 /* CKDataSyncController.swift in Sources */,
+				7E87067B22160CEC00977523 /* EventCell.swift in Sources */,
+				7E5B75FD2213974400CE7010 /* AWSCRUDAPIController.swift in Sources */,
 				7E8DD94721EC568D00108B30 /* CKQueryViewController.swift in Sources */,
 				7E8DD92F21E7C88D00108B30 /* StudentDetailsViewController.swift in Sources */,
 				7E8DD91621E6B73D00108B30 /* FMResultSet.m in Sources */,
@@ -437,9 +572,11 @@
 				7E8DD92521E6D1ED00108B30 /* CKDataStorage.swift in Sources */,
 				7E8DD91221E6B73D00108B30 /* FMDatabaseQueue.m in Sources */,
 				7E8DD92A21E7C25600108B30 /* StudentTableViewCell.swift in Sources */,
+				7E5B75FB221395D500CE7010 /* AWSViewController.swift in Sources */,
 				7E8DD91421E6B73D00108B30 /* FMDatabase.m in Sources */,
 				7E8DD91321E6B73D00108B30 /* FMDatabaseAdditions.m in Sources */,
 				7E8DD92721E7BC6A00108B30 /* Student.swift in Sources */,
+				7E8706782215FE3600977523 /* EventsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +721,7 @@
 		};
 		7E3A764A21E41F8C0037F963 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F89DCCB489A16B4E85601F85 /* Pods-DataSyncTools.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -605,6 +743,7 @@
 		};
 		7E3A764B21E41F8C0037F963 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 743342F9C1035073A9ED7A4C /* Pods-DataSyncTools.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

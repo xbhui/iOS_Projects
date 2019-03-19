@@ -1,0 +1,16 @@
+projects:
+  datasync:
+    schemaPath: graphql/schema.json
+    includes:
+      - datasync
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: swift
+        generatedFileName: datasync
+        docsFilePath: graphql
+        graphQLApiId: w6gaw2ypfndbrjjosnyvtzblf4
+      endpoints:
+        prod: >-
+          https://bzwysfp4gfczpai5yybldkzi4y.appsync-api.us-west-2.amazonaws.com/graphql
